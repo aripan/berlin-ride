@@ -1,0 +1,19 @@
+.home-image {
+  grid-area: image;
+}
+
+img {
+  width: 20rem;
+  height: auto;
+}
+.home-name {
+  grid-area: name;
+}
+
+.home-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas: "image name";
+  margin: 5rem;
+}
