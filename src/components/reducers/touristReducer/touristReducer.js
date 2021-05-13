@@ -1,16 +1,13 @@
-import React, { useReducer } from "react";
-import {
-  touristReducer,
-  touristState,
-} from "../../reducers/touristReducer/touristReducer";
+export const touristState = {
+  ticket: {},
+};
 
-const ResultScreenTourist = ({ duration, visitMuseum }) => {
-  const [state, dispatch] = useReducer(touristReducer, touristState);
-
-  const handleSuggestedResult = () => {
-    if (duration === "less than 4 days" && visitMuseum === "Not now") {
-      dispatch({
-        type: "LESS_FOUR_DAYS_NO_MUSEUM",
+let updatedTicket = {},
+  newTicketInfo = {};
+export const touristReducer = (state, action) => {
+  switch (action.type) {
+    case "LESS_FOUR_DAYS_NO_MUSEUM":
+      updatedTicket = {
         tickets: "Berlin City Tour Cards",
         Price: [
           "CityTourCard 48 hours AB: €19.90",
@@ -18,7 +15,6 @@ const ResultScreenTourist = ({ duration, visitMuseum }) => {
           "CityTourCard 72 hours AB: €29.90",
           "CityTourCard 72 hours ABC: €33.90",
         ],
-
         Validity: "48hours/ 72 hours",
         "Conditions of carriage": [
           "Up to 3 children between ages 6 and 14",
@@ -26,12 +22,16 @@ const ResultScreenTourist = ({ duration, visitMuseum }) => {
           "Hand luggage, strollers, wheelchairs and other orthopedic aids, e.g., walking aids",
           "1 dog",
         ],
-      });
-    }
+      };
 
-    if (duration === "less than 4 days" && visitMuseum === "Yes") {
-      dispatch({
-        type: "LESS_FOUR_DAYS_MUSEUM",
+      newTicketInfo = {
+        ...state.ticket,
+        updatedTicket,
+      };
+      console.log(newTicketInfo);
+      return { ticket: newTicketInfo };
+    case "LESS_FOUR_DAYS_MUSEUM":
+      updatedTicket = {
         tickets: "Berlin Welcome Card",
 
         Price: [
@@ -50,12 +50,16 @@ const ResultScreenTourist = ({ duration, visitMuseum }) => {
           "Hand luggage, strollers, wheelchairs and other orthopedic aids, e.g., walking aids",
           "1 dog",
         ],
-      });
-    }
+      };
 
-    if (duration === "more than 4 days" && visitMuseum === "Not now") {
-      dispatch({
-        type: "MORE_FOUR_DAYS_NO_MUSEUM",
+      newTicketInfo = {
+        ...state.ticket,
+        updatedTicket,
+      };
+      console.log(newTicketInfo);
+      return { ticket: newTicketInfo };
+    case "MORE_FOUR_DAYS_NO_MUSEUM":
+      updatedTicket = {
         tickets: "Berlin City Tour Cards",
         Price: [
           "City Tour Card 4 days AB: €36.90",
@@ -74,12 +78,16 @@ const ResultScreenTourist = ({ duration, visitMuseum }) => {
           "Hand luggage, strollers, wheelchairs and other orthopedic aids, e.g., walking aids",
           "1 dog",
         ],
-      });
-    }
+      };
 
-    if (duration === "more than 4 days" && visitMuseum === "Yes") {
-      dispatch({
-        type: "MORE_FOUR_DAYS_MUSEUM",
+      newTicketInfo = {
+        ...state.ticket,
+        updatedTicket,
+      };
+      console.log(newTicketInfo);
+      return { ticket: newTicketInfo };
+    case "MORE_FOUR_DAYS_MUSEUM":
+      updatedTicket = {
         tickets: "Berlin Welcome Cards",
         Price: [
           "Welcome Card 4 days AB:  €40.00",
@@ -100,41 +108,15 @@ const ResultScreenTourist = ({ duration, visitMuseum }) => {
           "Hand luggage, strollers, wheelchairs and other orthopedic aids, e.g., walking aids",
           "1 dog",
         ],
-      });
-    }
-  };
+      };
 
-  return (
-    <div>
-      <h4>Details we got from you:</h4>
-      <ul>
-        <li>Are you a tourist: Yes</li>
-        <li>How long will you stay in Berlin: {duration}</li>
-        <li>Would you like to visit museums: {visitMuseum}</li>
-      </ul>
-      <button onClick={handleSuggestedResult}>Click here</button>
-      {state.ticket.updatedTicket ? (
-        <>
-          <p>Ticket:{state.ticket.updatedTicket.tickets}</p>
-          Price:
-          <ul>
-            <li>{state.ticket.updatedTicket.Price[0]}</li>
-            <li>{state.ticket.updatedTicket.Price[1]}</li>
-            <li>{state.ticket.updatedTicket.Price[2]}</li>
-            <li>{state.ticket.updatedTicket.Price[3]}</li>
-            <li>{state.ticket.updatedTicket?.Price[5]}</li>
-            <li>{state.ticket.updatedTicket?.Price[6]}</li>
-            <li>{state.ticket.updatedTicket?.Price[7]}</li>
-          </ul>
-          <p>Validity: {state.ticket.updatedTicket.Validity}</p>
-          <p>
-            Conditions of carriage:{" "}
-            {state.ticket.updatedTicket["Conditions of carriage"]}
-          </p>
-        </>
-      ) : null}
-    </div>
-  );
+      newTicketInfo = {
+        ...state.ticket,
+        updatedTicket,
+      };
+      console.log(newTicketInfo);
+      return { ticket: newTicketInfo };
+    default:
+      return state;
+  }
 };
-
-export default ResultScreenTourist;
