@@ -8,8 +8,7 @@ export const studentReducer = (state, action) => {
   switch (action.type) {
     case "STUDENT_ID_I":
       updatedTicket = {
-        tickets: ["School student ticket with student ID I"],
-        Price: ["Free of charge"],
+        tickets: ["School student ticket with student ID I - free of charge"],
 
         Validity: "As long as the conditions are fulfilled",
 
@@ -35,15 +34,9 @@ export const studentReducer = (state, action) => {
     case "STUDENT_ID_II":
       updatedTicket = {
         tickets: [
-          "VBB subscription trainee/student II Berlin AB",
-          "VBB subscription trainee/student II Berlin BC",
-          "VBB subscription trainee/student II Berlin ABC",
-        ],
-
-        Price: [
-          "Berlin AB - €58.00(monthly ticket), €534.00(Annual ticket- paid monthly) ",
-          "Berlin BC - €63.80(monthly ticket), €625.00(Annual ticket- paid monthly)",
-          "Berlin ABC - €77.50(monthly ticket), €760.00(Annual ticket- paid monthly)",
+          "VBB subscription trainee/student II Berlin AB - €58.00(monthly ticket), €534.00(Annual ticket- paid monthly)",
+          "VBB subscription trainee/student II Berlin BC - €63.80(monthly ticket), €625.00(Annual ticket- paid monthly)",
+          "VBB subscription trainee/student II Berlin ABC - €77.50(monthly ticket), €760.00(Annual ticket- paid monthly)",
         ],
 
         Validity: "It is valid until the printed last day at midnight.",
@@ -68,9 +61,7 @@ export const studentReducer = (state, action) => {
       return { ticket: newTicketInfo };
     case "SEMESTER_TICKET":
       updatedTicket = {
-        tickets: ["SemesterTicket"],
-
-        Price: ["Included in semester registration"],
+        tickets: ["SemesterTicket - included in semester registration"],
 
         Validity: "One semester",
 
@@ -94,10 +85,8 @@ export const studentReducer = (state, action) => {
       return { ticket: newTicketInfo };
     case "TRAINEE_TICKET":
       updatedTicket = {
-        tickets: ["VBB subscription trainee"],
-
-        Price: [
-          "Monthly payment - €384.00 & Annual payment - €365.00 (with advance payment)",
+        tickets: [
+          "VBB subscription trainee - €384.00 (subscription - paid monthly), €365.00 (subscription - paid annually)",
         ],
 
         Validity: "subscription for 12 months",

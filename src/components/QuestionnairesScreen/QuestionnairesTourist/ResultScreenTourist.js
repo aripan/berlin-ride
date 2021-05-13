@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import {
   touristReducer,
   touristState,
@@ -6,13 +6,15 @@ import {
 
 const ResultScreenTourist = ({ duration, visitMuseum }) => {
   const [state, dispatch] = useReducer(touristReducer, touristState);
+  const [ticketInfo, setTicketInfo] = useState([]);
+  const [carriages, setCarriages] = useState([]);
 
   const handleSuggestedResult = () => {
     if (duration === "less than 4 days" && visitMuseum === "Not now") {
       dispatch({
         type: "LESS_FOUR_DAYS_NO_MUSEUM",
-        tickets: "Berlin City Tour Cards",
-        Price: [
+
+        tickets: [
           "CityTourCard 48 hours AB: €19.90",
           "CityTourCard 48 hours ABC: €22.90",
           "CityTourCard 72 hours AB: €29.90",
@@ -32,9 +34,8 @@ const ResultScreenTourist = ({ duration, visitMuseum }) => {
     if (duration === "less than 4 days" && visitMuseum === "Yes") {
       dispatch({
         type: "LESS_FOUR_DAYS_MUSEUM",
-        tickets: "Berlin Welcome Card",
 
-        Price: [
+        tickets: [
           "Welcome Card 48 hours AB: €23.00",
           "Welcome Card 48 hours ABC: €28.00",
           "Welcome Card 72 hours AB: €33.00",
@@ -56,8 +57,8 @@ const ResultScreenTourist = ({ duration, visitMuseum }) => {
     if (duration === "more than 4 days" && visitMuseum === "Not now") {
       dispatch({
         type: "MORE_FOUR_DAYS_NO_MUSEUM",
-        tickets: "Berlin City Tour Cards",
-        Price: [
+
+        tickets: [
           "City Tour Card 4 days AB: €36.90",
           "City Tour Card 4 days ABC: €41.90",
           "City Tour Card 5 days AB: €42.90",
@@ -80,8 +81,8 @@ const ResultScreenTourist = ({ duration, visitMuseum }) => {
     if (duration === "more than 4 days" && visitMuseum === "Yes") {
       dispatch({
         type: "MORE_FOUR_DAYS_MUSEUM",
-        tickets: "Berlin Welcome Cards",
-        Price: [
+
+        tickets: [
           "Welcome Card 4 days AB:  €40.00",
           "Welcome Card 4 days ABC: €45.00",
           "Welcome Card 5 days AB:  €46.00",
@@ -104,6 +105,13 @@ const ResultScreenTourist = ({ duration, visitMuseum }) => {
     }
   };
 
+  useEffect(() => {
+    if (state.ticket.updatedTicket) {
+      setTicketInfo(state.ticket.updatedTicket.tickets);
+
+      setCarriages(state.ticket.updatedTicket["Conditions of carriage"]);
+    }
+  }, [state.ticket.updatedTicket]);
   return (
     <div>
       <h4>Details we got from you:</h4>
@@ -113,7 +121,17 @@ const ResultScreenTourist = ({ duration, visitMuseum }) => {
         <li>Would you like to visit museums: {visitMuseum}</li>
       </ul>
       <button onClick={handleSuggestedResult}>Click here</button>
-      {state.ticket.updatedTicket ? (
+      {ticketInfo.map((ticket, index) => (
+        <p key={index}>{ticket}</p>
+      ))}
+      {state.ticket.updatedTicket && (
+        <p>Validity: {state.ticket.updatedTicket.Validity}</p>
+      )}
+
+      {carriages.map((carriage, index) => (
+        <p key={index}>{carriage}</p>
+      ))}
+      {/* {state.ticket.updatedTicket ? (
         <>
           <p>Ticket:{state.ticket.updatedTicket.tickets}</p>
           Price:
@@ -132,7 +150,7 @@ const ResultScreenTourist = ({ duration, visitMuseum }) => {
             {state.ticket.updatedTicket["Conditions of carriage"]}
           </p>
         </>
-      ) : null}
+      ) : null} */}
     </div>
   );
 };

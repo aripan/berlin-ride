@@ -36,6 +36,7 @@ function App() {
         <Route exact path="/questionnaires/nearby">
           <QuestionnairesNearBy />
         </Route>
+        <Route exact path="/questionnaires/dayTicket"></Route>
         <Route exact path="/questionnaires/senior">
           <QuestionnairesSenior />
         </Route>
