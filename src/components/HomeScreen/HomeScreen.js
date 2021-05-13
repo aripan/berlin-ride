@@ -1,12 +1,16 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router";
+
 import train from "../../images/train.png";
 import "./HomeScreen.css";
 
 const HomeScreen = () => {
   const [name, setName] = useState("");
+  let history = useHistory();
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(name);
+    history.push("/questionnaires/tourist");
   };
   return (
     <div className="home-container">
