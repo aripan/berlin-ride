@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 import ResultScreenSenior from "./ResultScreenSenior";
 
 const QuestionnairesSenior = () => {
@@ -24,27 +25,39 @@ const QuestionnairesSenior = () => {
     }
   };
   return (
-    <div className="question-container">
-      {showResult ? (
-        <ResultScreenSenior />
-      ) : (
-        <>
-          <div className="question-section">
-            <div className="question-text">{questions[0].questionText}</div>
-          </div>
-          <div className="answer-section">
-            {questions[0].answerOptions.map((answerOption, index) => (
-              <button
-                key={index}
-                onClick={() => handleAnswerButtonClick(answerOption.answerText)}
-              >
-                {answerOption.answerText}
-              </button>
-            ))}
-          </div>
-        </>
-      )}
-    </div>
+    <>
+      <h2 style={{ textAlign: "center" }}>
+        Welcome, {sessionStorage.getItem("user")}
+      </h2>
+      <div className="question-container">
+        {showResult ? (
+          <ResultScreenSenior />
+        ) : (
+          <>
+            <div className="question-section">
+              <div className="question-text">{questions[0].questionText}</div>
+            </div>
+            <div className="answer-section">
+              {questions[0].answerOptions.map((answerOption, index) => (
+                <button
+                  key={index}
+                  onClick={() =>
+                    handleAnswerButtonClick(answerOption.answerText)
+                  }
+                >
+                  {answerOption.answerText}
+                </button>
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+      <Link to="/">
+        <button>Go Back to Home</button>
+      </Link>
+      <br />
+      <br />
+    </>
   );
 };
 

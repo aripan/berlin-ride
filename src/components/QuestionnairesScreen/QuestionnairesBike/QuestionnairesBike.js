@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 import ResultScreenBike from "./ResultScreenBike";
 
 const QuestionnairesBike = () => {
@@ -48,33 +49,43 @@ const QuestionnairesBike = () => {
   };
 
   return (
-    <div className="question-container">
-      {showResult ? (
-        <ResultScreenBike selectedOption={selectedOption} />
-      ) : (
-        <>
-          <div className="question-section">
-            <div className="question-text">
-              {questions[currentQuestion].questionText}
+    <>
+      <h2 style={{ textAlign: "center" }}>
+        Welcome, {sessionStorage.getItem("user")}
+      </h2>
+      <div className="question-container">
+        {showResult ? (
+          <ResultScreenBike selectedOption={selectedOption} />
+        ) : (
+          <>
+            <div className="question-section">
+              <div className="question-text">
+                {questions[currentQuestion].questionText}
+              </div>
             </div>
-          </div>
-          <div className="answer-section">
-            {questions[currentQuestion].answerOptions.map(
-              (answerOption, index) => (
-                <button
-                  key={index}
-                  onClick={() =>
-                    handleAnswerButtonClick(answerOption.answerText)
-                  }
-                >
-                  {answerOption.answerText}
-                </button>
-              )
-            )}
-          </div>
-        </>
-      )}
-    </div>
+            <div className="answer-section">
+              {questions[currentQuestion].answerOptions.map(
+                (answerOption, index) => (
+                  <button
+                    key={index}
+                    onClick={() =>
+                      handleAnswerButtonClick(answerOption.answerText)
+                    }
+                  >
+                    {answerOption.answerText}
+                  </button>
+                )
+              )}
+            </div>
+          </>
+        )}
+      </div>
+      <Link to="/">
+        <button>Go Back to Home</button>
+      </Link>
+      <br />
+      <br />
+    </>
   );
 };
 

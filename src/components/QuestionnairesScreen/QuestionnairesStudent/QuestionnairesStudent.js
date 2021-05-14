@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 import ResultScreenStudent from "./ResultScreenStudent";
 
 const QuestionnairesStudent = () => {
@@ -89,38 +90,48 @@ const QuestionnairesStudent = () => {
   };
 
   return (
-    <div className="question-container">
-      {showResult ? (
-        <ResultScreenStudent
-          studentIdI={studentIdI}
-          studentIdII={studentIdII}
-          semesterTicket={semesterTicket}
-          vbbTicket={vbbTicket}
-        />
-      ) : (
-        <>
-          <div className="question-section">
-            <div className="question-text">
-              {questions[currentQuestion].questionText}
+    <>
+      <h2 style={{ textAlign: "center" }}>
+        Welcome, {sessionStorage.getItem("user")}
+      </h2>
+      <div className="question-container">
+        {showResult ? (
+          <ResultScreenStudent
+            studentIdI={studentIdI}
+            studentIdII={studentIdII}
+            semesterTicket={semesterTicket}
+            vbbTicket={vbbTicket}
+          />
+        ) : (
+          <>
+            <div className="question-section">
+              <div className="question-text">
+                {questions[currentQuestion].questionText}
+              </div>
             </div>
-          </div>
-          <div className="answer-section">
-            {questions[currentQuestion].answerOptions.map(
-              (answerOption, index) => (
-                <button
-                  key={index}
-                  onClick={() =>
-                    handleAnswerButtonClick(answerOption.answerText)
-                  }
-                >
-                  {answerOption.answerText}
-                </button>
-              )
-            )}
-          </div>
-        </>
-      )}
-    </div>
+            <div className="answer-section">
+              {questions[currentQuestion].answerOptions.map(
+                (answerOption, index) => (
+                  <button
+                    key={index}
+                    onClick={() =>
+                      handleAnswerButtonClick(answerOption.answerText)
+                    }
+                  >
+                    {answerOption.answerText}
+                  </button>
+                )
+              )}
+            </div>
+          </>
+        )}
+      </div>
+      <Link to="/">
+        <button>Go Back to Home</button>
+      </Link>
+      <br />
+      <br />
+    </>
   );
 };
 

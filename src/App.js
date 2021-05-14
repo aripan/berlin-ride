@@ -9,6 +9,7 @@ import QuestionnairesNearBy from "./components/QuestionnairesScreen/Questionnair
 import QuestionnairesSenior from "./components/QuestionnairesScreen/QuestionnairesSenior/QuestionnairesSenior";
 import QuestionnairesWeekly from "./components/QuestionnairesScreen/QuestionnairesWeekly/QuestionnairesWeekly";
 import QuestionnairesDayTicket from "./components/QuestionnairesScreen/QuestionnairesDayTicket/QuestionnairesDayTicket";
+import NotFound from "./components/NotFound/NotFound";
 
 function App() {
   return (
@@ -41,8 +42,11 @@ function App() {
         <Route exact path="/questionnaires/bike">
           <QuestionnairesBike />
         </Route>
-        <Route path="/">
+        <Route exact path="/">
           <HomeScreen />
+        </Route>
+        <Route path="*">
+          <NotFound />
         </Route>
       </Switch>
     </Router>
