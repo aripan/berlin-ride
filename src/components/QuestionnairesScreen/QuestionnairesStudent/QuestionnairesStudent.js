@@ -15,14 +15,14 @@ const QuestionnairesStudent = () => {
       questionText: "Do you have a student ID I?",
       answerOptions: [
         { answerText: "Yes i have a student ID I" },
-        { answerText: "No i do not have" },
+        { answerText: "No i do not have ID I" },
       ],
     },
     {
       questionText: "Do you have a student ID II?",
       answerOptions: [
         { answerText: "Yes i have a student ID II" },
-        { answerText: "No i do not have" },
+        { answerText: "No i do not have ID II" },
       ],
     },
     {
@@ -43,10 +43,10 @@ const QuestionnairesStudent = () => {
   ];
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [studentIdI, setStudentIdI] = useState("No i do not have");
-  const [studentIdII, setStudentIdII] = useState("No i do not have");
-  const [semesterTicket, setSemesterTicket] = useState("No i am not eligible");
-  const [vbbTicket, setVbbTicket] = useState("No i am not attending");
+  const [studentIdI, setStudentIdI] = useState("");
+  const [studentIdII, setStudentIdII] = useState("");
+  const [semesterTicket, setSemesterTicket] = useState("");
+  const [vbbTicket, setVbbTicket] = useState("");
   const [showResult, setShowResult] = useState(false);
   let history = useHistory();
 
@@ -57,14 +57,26 @@ const QuestionnairesStudent = () => {
 
     if (answer === "Yes i have a student ID I") {
       setStudentIdI(answer);
+      setShowResult(true);
+    } else if (answer === "No i do not have ID I") {
+      setStudentIdI(answer);
     }
+
     if (answer === "Yes i have a student ID II") {
       setStudentIdII(answer);
+      setShowResult(true);
+    } else if (answer === "No i do not have ID II") {
+      setStudentIdII(answer);
     }
+
     if (answer === "Yes i am eligible to buy") {
       setSemesterTicket(answer);
+      setShowResult(true);
+    } else if (answer === "No i am not eligible") {
+      setSemesterTicket(answer);
     }
-    if (answer === "Yes i am attending") {
+
+    if (answer === "Yes i am attending" || answer === "No i am not attending") {
       setVbbTicket(answer);
     }
 

@@ -1,4 +1,5 @@
 import React, { useEffect, useReducer, useState } from "react";
+import { useHistory } from "react-router";
 import {
   longPeriodReducer,
   longPeriodState,
@@ -8,12 +9,13 @@ const ResultScreenLongPeriod = ({ berlinpass, ticket10, ticketVBB }) => {
   const [state, dispatch] = useReducer(longPeriodReducer, longPeriodState);
   const [ticketInfo, setTicketInfo] = useState([]);
   const [carriages, setCarriages] = useState([]);
+  let history = useHistory();
 
   const handleSuggestedResult = () => {
     if (berlinpass === "Yes i have a berlinpass") {
       dispatch({
         type: "BERLIN_PASS",
-
+        title: "Berlin-Ticket S",
         tickets: ["Berlin ticket S Berlin AB - €27.50 (monthly ticket)"],
 
         "Travel validity":
@@ -31,6 +33,7 @@ const ResultScreenLongPeriod = ({ berlinpass, ticket10, ticketVBB }) => {
     if (ticket10 === "Yes i  would like to buy") {
       dispatch({
         type: "TICKET_10",
+        title: "10 o’clock ticket",
         tickets: [
           "10 o’clock ticket Berlin AB - €63.00 (monthly ticket), €547.00(Subscription - paid monthly),  €531.00(Subscription - paid annually)",
           "10 o’clock ticket Berlin BC - €65.00 (monthly ticket), €600.00(Subscription - paid monthly),  €585.00(Subscription - paid annually)",
@@ -51,6 +54,7 @@ const ResultScreenLongPeriod = ({ berlinpass, ticket10, ticketVBB }) => {
     if (ticketVBB === "Yes i want to see") {
       dispatch({
         type: "TICKET_VBB",
+        title: "VBB eco-ticket",
         tickets: [
           "VBB eco-ticket Berlin AB - €86.00 (monthly ticket-no contract), €903.00 (annual ticket-no contract),  €761.00 (subscription - paid monthly), €728.00 (subscription - paid annually)",
           "VBB eco-ticket Berlin BC - €89.00 (monthly ticket-no contract), €934.50 (annual ticket-no contract),  €822.00 (subscription - paid monthly), €807.00 (subscription - paid annually)",
@@ -68,6 +72,10 @@ const ResultScreenLongPeriod = ({ berlinpass, ticket10, ticketVBB }) => {
         ],
       });
     }
+    if (ticketVBB === "No i do not want") {
+      alert("You have not answered the question properly.");
+      history.push("/");
+    }
   };
 
   useEffect(() => {
@@ -83,16 +91,23 @@ const ResultScreenLongPeriod = ({ berlinpass, ticket10, ticketVBB }) => {
       <h4>Details we got from you:</h4>
       <ul>
         <li>Do you prefer to buy monthly or annual tickets: Yes</li>
-        <li>Do you have a berlinpass: {berlinpass}</li>
-        <li>
-          Do you want to save money by buying a 10 o’clock ticket: {ticket10}
-        </li>
-        <li>
-          Are you looking for some other option such as VBB eco-ticket:{" "}
-          {ticketVBB}
-        </li>
+        {berlinpass && <li>Do you have a berlinpass: {berlinpass}</li>}
+        {ticket10 && (
+          <li>
+            Do you want to save money by buying a 10 o’clock ticket: {ticket10}
+          </li>
+        )}
+        {ticketVBB && (
+          <li>
+            Are you looking for some other option such as VBB eco-ticket:{" "}
+            {ticketVBB}
+          </li>
+        )}
       </ul>
-      <button onClick={handleSuggestedResult}>Click here</button>
+      <button onClick={handleSuggestedResult}>Recommended ticket</button>
+      <h4 style={{ textDecoration: "underline" }}>
+        {state.ticket.updatedTicket?.title}
+      </h4>
       {ticketInfo.map((ticket, index) => (
         <p key={index}>{ticket}</p>
       ))}

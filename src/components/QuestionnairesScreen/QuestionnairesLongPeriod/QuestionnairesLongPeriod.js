@@ -36,9 +36,9 @@ const QuestionnairesLongPeriod = () => {
   ];
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [berlinpass, setBerlinpass] = useState("No i do not have a berlinpass");
-  const [ticket10, setTicket10] = useState("No i do not want");
-  const [ticketVBB, setTicketVBB] = useState("No i do not want");
+  const [berlinpass, setBerlinpass] = useState("");
+  const [ticket10, setTicket10] = useState("");
+  const [ticketVBB, setTicketVBB] = useState("");
   const [showResult, setShowResult] = useState(false);
   let history = useHistory();
 
@@ -49,11 +49,18 @@ const QuestionnairesLongPeriod = () => {
 
     if (answer === "Yes i have a berlinpass") {
       setBerlinpass(answer);
+      setShowResult(true);
+    } else if (answer === "No i do not have a berlinpass") {
+      setBerlinpass(answer);
     }
+
     if (answer === "Yes i  would like to buy") {
       setTicket10(answer);
+      setShowResult(true);
+    } else if (answer === "No i do not want") {
+      setTicket10(answer);
     }
-    if (answer === "Yes i want to see") {
+    if (answer === "Yes i want to see" || answer === "No i do not want") {
       setTicketVBB(answer);
     }
 

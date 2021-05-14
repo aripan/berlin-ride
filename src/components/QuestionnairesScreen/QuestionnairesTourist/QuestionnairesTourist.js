@@ -16,17 +16,21 @@ const QuestionnairesTourist = () => {
       answerOptions: [
         { answerText: "less than 4 days" },
         { answerText: "more than 4 days" },
+        { answerText: "or even longer" },
       ],
     },
     {
-      questionText: "Would you like to visit museums?",
-      answerOptions: [{ answerText: "Yes" }, { answerText: "Not now" }],
+      questionText: "Do you want to visit Museums?",
+      answerOptions: [
+        { answerText: "Yes i want to visit" },
+        { answerText: "Not now" },
+      ],
     },
   ];
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [duration, setDuration] = useState("more than 4 days");
-  const [visitMuseum, setVisitMuseum] = useState("Yes");
+  const [duration, setDuration] = useState("");
+  const [visitMuseum, setVisitMuseum] = useState("");
   const [showResult, setShowResult] = useState(false);
   let history = useHistory();
 
@@ -35,11 +39,15 @@ const QuestionnairesTourist = () => {
       history.push("/questionnaires/student");
     }
 
-    if (answer === "less than 4 days") {
+    if (answer === "less than 4 days" || answer === "more than 4 days") {
       setDuration(answer);
     }
-    if (answer === "Not now") {
+    if (answer === "Yes i want to visit" || answer === "Not now") {
       setVisitMuseum(answer);
+    }
+
+    if (answer === "or even longer") {
+      history.push("/questionnaires/longPeriod");
     }
 
     const nextQuestion = currentQuestion + 1;
@@ -50,7 +58,6 @@ const QuestionnairesTourist = () => {
     }
   };
 
-  console.log(duration, visitMuseum);
   return (
     <div>
       {showResult ? (

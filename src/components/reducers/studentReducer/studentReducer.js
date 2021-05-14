@@ -8,6 +8,7 @@ export const studentReducer = (state, action) => {
   switch (action.type) {
     case "STUDENT_ID_I":
       updatedTicket = {
+        title: "School student ticket with student ID I",
         tickets: ["School student ticket with student ID I - free of charge"],
 
         Validity: "As long as the conditions are fulfilled",
@@ -33,6 +34,7 @@ export const studentReducer = (state, action) => {
       return { ticket: newTicketInfo };
     case "STUDENT_ID_II":
       updatedTicket = {
+        title: "Monthly tickets for trainees and school students",
         tickets: [
           "VBB subscription trainee/student II Berlin AB - €58.00(monthly ticket), €534.00(Annual ticket- paid monthly)",
           "VBB subscription trainee/student II Berlin BC - €63.80(monthly ticket), €625.00(Annual ticket- paid monthly)",
@@ -61,6 +63,7 @@ export const studentReducer = (state, action) => {
       return { ticket: newTicketInfo };
     case "SEMESTER_TICKET":
       updatedTicket = {
+        title: "Semesterticket",
         tickets: ["SemesterTicket - included in semester registration"],
 
         Validity: "One semester",
@@ -85,6 +88,7 @@ export const studentReducer = (state, action) => {
       return { ticket: newTicketInfo };
     case "TRAINEE_TICKET":
       updatedTicket = {
+        title: "VBB subscription trainee",
         tickets: [
           "VBB subscription trainee - €384.00 (subscription - paid monthly), €365.00 (subscription - paid annually)",
         ],

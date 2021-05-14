@@ -8,6 +8,7 @@ export const nearByReducer = (state, action) => {
   switch (action.type) {
     case "SINGLE_TICKET":
       updatedTicket = {
+        title: "Single ticket",
         tickets: [
           "Single ticket Berlin AB - €3.00 - reduced fare €1.90",
           "Single ticket Berlin BC - €3.50 - reduced fare €2.40",
@@ -33,6 +34,7 @@ export const nearByReducer = (state, action) => {
       return { ticket: newTicketInfo };
     case "SHORT_TRIP_TICKET":
       updatedTicket = {
+        title: "Short trip ticket",
         tickets: ["Short trip ticket - €2.00 - reduced fare  €1.50"],
 
         Validity:
@@ -54,6 +56,7 @@ export const nearByReducer = (state, action) => {
       return { ticket: newTicketInfo };
     case "FOUR_TRIP_TICKET":
       updatedTicket = {
+        title: "4-trip-ticket",
         tickets: [
           "4-trip ticket Berlin AB - €9.40 - reduced fare €5.80",
           "4-trip ticket Berlin BC - €12.60 - reduced fare €8.60",
@@ -79,6 +82,7 @@ export const nearByReducer = (state, action) => {
       return { ticket: newTicketInfo };
     case "EXTENSION_TICKET":
       updatedTicket = {
+        title: "Extension tickets",
         tickets: [
           "Extension ticket A/C - €1.80 - reduced fare €1.40",
           "Extension ticket A/C 24-hour ticket - €3.70 - no reduced fare",

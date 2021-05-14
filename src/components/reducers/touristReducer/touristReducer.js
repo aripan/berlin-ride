@@ -8,6 +8,7 @@ export const touristReducer = (state, action) => {
   switch (action.type) {
     case "LESS_FOUR_DAYS_NO_MUSEUM":
       updatedTicket = {
+        title: "Berlin City Tour Cards",
         tickets: [
           "CityTourCard 48 hours AB: €19.90",
           "CityTourCard 48 hours ABC: €22.90",
@@ -32,6 +33,7 @@ export const touristReducer = (state, action) => {
       return { ticket: newTicketInfo };
     case "LESS_FOUR_DAYS_MUSEUM":
       updatedTicket = {
+        title: "Berlin Welcome Cards",
         tickets: [
           "Welcome Card 48 hours AB: €23.00",
           "Welcome Card 48 hours ABC: €28.00",
@@ -58,6 +60,7 @@ export const touristReducer = (state, action) => {
       return { ticket: newTicketInfo };
     case "MORE_FOUR_DAYS_NO_MUSEUM":
       updatedTicket = {
+        title: "Berlin City Tour Cards",
         tickets: [
           "City Tour Card 4 days AB: €36.90",
           "City Tour Card 4 days ABC: €41.90",
@@ -85,6 +88,7 @@ export const touristReducer = (state, action) => {
       return { ticket: newTicketInfo };
     case "MORE_FOUR_DAYS_MUSEUM":
       updatedTicket = {
+        title: "Berlin Welcome Cards",
         tickets: [
           "Welcome Card 4 days AB:  €40.00",
           "Welcome Card 4 days ABC: €45.00",

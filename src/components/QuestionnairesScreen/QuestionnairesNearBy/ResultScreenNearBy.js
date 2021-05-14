@@ -13,7 +13,7 @@ const ResultScreenNearBy = ({ selectedOption }) => {
     if (selectedOption === "Single ticket") {
       dispatch({
         type: "SINGLE_TICKET",
-
+        title: "Single ticket",
         tickets: [
           "Single ticket Berlin AB - €3.00 - reduced fare €1.90",
           "Single ticket Berlin BC - €3.50 - reduced fare €2.40",
@@ -34,6 +34,7 @@ const ResultScreenNearBy = ({ selectedOption }) => {
     if (selectedOption === "Short trip ticket") {
       dispatch({
         type: "SHORT_TRIP_TICKET",
+        title: "Short trip ticket",
         tickets: ["Short trip ticket - €2.00 - reduced fare  €1.50"],
 
         Validity:
@@ -50,6 +51,7 @@ const ResultScreenNearBy = ({ selectedOption }) => {
     if (selectedOption === "4-trip-ticket") {
       dispatch({
         type: "FOUR_TRIP_TICKET",
+        title: "4-trip-ticket",
         tickets: [
           "4-trip ticket Berlin AB - €9.40 - reduced fare €5.80",
           "4-trip ticket Berlin BC - €12.60 - reduced fare €8.60",
@@ -70,6 +72,7 @@ const ResultScreenNearBy = ({ selectedOption }) => {
     if (selectedOption === "Extension tickets") {
       dispatch({
         type: "EXTENSION_TICKET",
+        title: "Extension tickets",
         tickets: [
           "Extension ticket A/C - €1.80 - reduced fare €1.40",
           "Extension ticket A/C 24-hour ticket - €3.70 - no reduced fare",
@@ -105,7 +108,10 @@ const ResultScreenNearBy = ({ selectedOption }) => {
       </p>
       <p>Selected option: {selectedOption} </p>
 
-      <button onClick={handleSuggestedResult}>Click here</button>
+      <button onClick={handleSuggestedResult}>Recommended ticket</button>
+      <h4 style={{ textDecoration: "underline" }}>
+        {state.ticket.updatedTicket?.title}
+      </h4>
       {ticketInfo.map((ticket, index) => (
         <p key={index}>{ticket}</p>
       ))}

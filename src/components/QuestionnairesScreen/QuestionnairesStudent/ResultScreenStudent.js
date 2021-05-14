@@ -1,4 +1,5 @@
 import React, { useEffect, useReducer, useState } from "react";
+import { useHistory } from "react-router";
 import {
   studentReducer,
   studentState,
@@ -13,10 +14,13 @@ const ResultScreenStudent = ({
   const [state, dispatch] = useReducer(studentReducer, studentState);
   const [ticketInfo, setTicketInfo] = useState([]);
   const [carriages, setCarriages] = useState([]);
+  let history = useHistory();
+
   const handleSuggestedResult = () => {
     if (studentIdI === "Yes i have a student ID I") {
       dispatch({
         type: "STUDENT_ID_I",
+        title: "School student ticket with student ID I",
         tickets: ["School student ticket with student ID I - free of charge"],
 
         Validity: "As long as the conditions are fulfilled",
@@ -37,6 +41,7 @@ const ResultScreenStudent = ({
     if (studentIdII === "Yes i have a student ID II") {
       dispatch({
         type: "STUDENT_ID_II",
+        title: "Monthly tickets for trainees and school students",
         tickets: [
           "VBB subscription trainee/student II Berlin AB - €58.00(monthly ticket), €534.00(Annual ticket- paid monthly)",
           "VBB subscription trainee/student II Berlin BC - €63.80(monthly ticket), €625.00(Annual ticket- paid monthly)",
@@ -60,6 +65,7 @@ const ResultScreenStudent = ({
     if (semesterTicket === "Yes i am eligible to buy") {
       dispatch({
         type: "SEMESTER_TICKET",
+        title: "Semesterticket",
         tickets: ["SemesterTicket - included in semester registration"],
 
         Validity: "One semester",
@@ -79,6 +85,7 @@ const ResultScreenStudent = ({
     if (vbbTicket === "Yes i am attending") {
       dispatch({
         type: "TRAINEE_TICKET",
+        title: "VBB subscription trainee",
         tickets: [
           "VBB subscription trainee - €384.00 (subscription - paid monthly), €365.00 (subscription - paid annually)",
         ],
@@ -98,12 +105,16 @@ const ResultScreenStudent = ({
         ],
       });
     }
+
+    if (vbbTicket === "No i am not attending") {
+      alert("You have not answered the question properly.");
+      history.push("/");
+    }
   };
 
   useEffect(() => {
     if (state.ticket.updatedTicket) {
       setTicketInfo(state.ticket.updatedTicket.tickets);
-
       setCarriages(state.ticket.updatedTicket["Conditions of carriage"]);
     }
   }, [state.ticket.updatedTicket]);
@@ -112,15 +123,22 @@ const ResultScreenStudent = ({
       <h4>Details we got from you:</h4>
       <ul>
         <li>Are you a student or trainee: Yes</li>
-        <li>Do you have a student ID I: {studentIdI}</li>
-        <li>Do you have a student ID II: {studentIdII}</li>
-        <li>Are you eligible to buy a semester ticket: {semesterTicket}</li>
-        <li>
-          Are you attending any professional training or vocational courses:{" "}
-          {vbbTicket}{" "}
-        </li>
+        {studentIdI && <li>Do you have a student ID I: {studentIdI}</li>}
+        {studentIdII && <li>Do you have a student ID II: {studentIdII}</li>}
+        {semesterTicket && (
+          <li>Are you eligible to buy a semester ticket: {semesterTicket}</li>
+        )}
+        {vbbTicket && (
+          <li>
+            Are you attending any professional training or vocational courses:{" "}
+            {vbbTicket}
+          </li>
+        )}
       </ul>
-      <button onClick={handleSuggestedResult}>Click here</button>
+      <button onClick={handleSuggestedResult}>Recommended ticket</button>
+      <h4 style={{ textDecoration: "underline" }}>
+        {state.ticket.updatedTicket?.title}
+      </h4>
       {ticketInfo.map((ticket, index) => (
         <p key={index}>{ticket}</p>
       ))}

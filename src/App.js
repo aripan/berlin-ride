@@ -10,8 +10,6 @@ import QuestionnairesSenior from "./components/QuestionnairesScreen/Questionnair
 import QuestionnairesWeekly from "./components/QuestionnairesScreen/QuestionnairesWeekly/QuestionnairesWeekly";
 import QuestionnairesDayTicket from "./components/QuestionnairesScreen/QuestionnairesDayTicket/QuestionnairesDayTicket";
 
-// import OptionsScreen from "./components/OptionsScreen/OptionsScreen";
-
 function App() {
   return (
     <Router>
@@ -31,9 +29,6 @@ function App() {
         <Route exact path="/questionnaires/weekly">
           <QuestionnairesWeekly />
         </Route>
-        <Route exact path="/questionnaires/bike">
-          <QuestionnairesBike />
-        </Route>
         <Route exact path="/questionnaires/nearby">
           <QuestionnairesNearBy />
         </Route>
@@ -42,6 +37,9 @@ function App() {
         </Route>
         <Route exact path="/questionnaires/senior">
           <QuestionnairesSenior />
+        </Route>
+        <Route exact path="/questionnaires/bike">
+          <QuestionnairesBike />
         </Route>
         <Route path="/">
           <HomeScreen />

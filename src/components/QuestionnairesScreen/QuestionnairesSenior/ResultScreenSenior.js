@@ -41,7 +41,7 @@ const ResultScreenSenior = () => {
     <div>
       <h4>Details we got from you:</h4>
       <p>Are you 65years old or older than that: Yes</p>
-      <button onClick={handleSuggestedResult}>Click here</button>
+      <button onClick={handleSuggestedResult}>Recommended ticket</button>
       <h4 style={{ textDecoration: "underline" }}>
         {state.ticket.updatedTicket?.title}
       </h4>

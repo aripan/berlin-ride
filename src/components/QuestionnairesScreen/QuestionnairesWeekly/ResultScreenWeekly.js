@@ -12,6 +12,7 @@ const ResultScreenWeekly = () => {
   const handleSuggestedResult = () => {
     dispatch({
       type: "TICKET_7",
+      title: "7-day ticket (VBB eco-ticket)",
       tickets: [
         "7-day ticket VBB eco-ticket Berlin AB - €36.00",
         "7-day ticket VBB eco-ticket Berlin BC - €37.00",
@@ -42,7 +43,10 @@ const ResultScreenWeekly = () => {
     <div>
       <h4>Details we got from you:</h4>
       <p>Do you need a ticket valid for 7 days: Yes</p>
-      <button onClick={handleSuggestedResult}>Click here</button>
+      <button onClick={handleSuggestedResult}>Recommended ticket</button>
+      <h4 style={{ textDecoration: "underline" }}>
+        {state.ticket.updatedTicket?.title}
+      </h4>
       {ticketInfo.map((ticket, index) => (
         <p key={index}>{ticket}</p>
       ))}

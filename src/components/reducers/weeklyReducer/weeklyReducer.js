@@ -8,6 +8,7 @@ export const weeklyReducer = (state, action) => {
   switch (action.type) {
     case "TICKET_7":
       updatedTicket = {
+        title: "7-day ticket (VBB eco-ticket)",
         tickets: [
           "7-day ticket VBB eco-ticket Berlin AB - €36.00",
           "7-day ticket VBB eco-ticket Berlin BC - €37.00",
