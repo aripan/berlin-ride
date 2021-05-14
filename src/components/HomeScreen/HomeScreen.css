@@ -55,6 +55,8 @@ input {
       "name";
   }
 }
+
+/* X-Small devices (portrait phones, less than 768px) */
 @media screen and (max-width: 768px) {
   .home-container {
     grid-template-columns: 1fr;
@@ -63,8 +65,4 @@ input {
       "image"
       "name";
   }
-}
-@media screen and (max-width: 992px) {
-}
-@media screen and (max-width: 1200px) {
 }

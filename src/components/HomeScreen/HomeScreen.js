@@ -39,7 +39,7 @@ const HomeScreen = () => {
               placeholder="Please write your name"
               required
             />
-            <input type="submit" />
+            <input type="submit" style={{ cursor: "pointer" }} />
           </form>
         </div>
       </div>

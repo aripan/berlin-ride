@@ -3,7 +3,9 @@ body {
   font-family: "Verdana", cursive, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #7cc6fe;
+  /* background-color: #7cc6fe; */
+  background: #be93c5;
+  background: linear-gradient(to right, #be93c5, #7bc6cc);
   display: flex;
   justify-content: center;
   align-items: center;
