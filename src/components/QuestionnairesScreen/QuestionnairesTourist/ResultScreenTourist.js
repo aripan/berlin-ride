@@ -1,4 +1,5 @@
 import React, { useEffect, useReducer, useState } from "react";
+import { Link } from "react-router-dom";
 import {
   touristReducer,
   touristState,
@@ -120,27 +121,67 @@ const ResultScreenTourist = ({ duration, visitMuseum }) => {
     }
   }, [state.ticket.updatedTicket]);
   return (
-    <div>
-      <h4>Details we got from you:</h4>
-      <ul>
-        <li>Are you a tourist: Yes</li>
-        <li>How long will you stay in Berlin: {duration}</li>
-        <li>Would you like to visit museums: {visitMuseum}</li>
-      </ul>
-      <button onClick={handleSuggestedResult}>Recommended ticket</button>
-      <h4 style={{ textDecoration: "underline" }}>
-        {state.ticket.updatedTicket?.title}
-      </h4>
-      {ticketInfo.map((ticket, index) => (
-        <p key={index}>{ticket}</p>
-      ))}
-      {state.ticket.updatedTicket && (
-        <p>Validity: {state.ticket.updatedTicket.Validity}</p>
-      )}
+    <div className="result-container">
+      <div className="details">
+        <h4>Details we got from you:</h4>
+        <ul style={{ listStyle: "none" }}>
+          <li>
+            Are you a tourist: <span className="details-answer">Yes</span>
+          </li>
+          <br />
+          <li>
+            How long will you stay in Berlin:{" "}
+            <span className="details-answer">{duration}</span>
+          </li>
+          <br />
+          <li>
+            Would you like to visit museums:{" "}
+            <span className="details-answer">{visitMuseum}</span>
+          </li>
+          <br />
+        </ul>
+      </div>
 
-      {carriages.map((carriage, index) => (
-        <p key={index}>{carriage}</p>
-      ))}
+      <button onClick={handleSuggestedResult}>
+        {" "}
+        Click here to see the suggestions
+      </button>
+      <div className="recommendation-container">
+        {state.ticket.updatedTicket && (
+          <>
+            <h4 style={{ textDecoration: "underline", textAlign: "center" }}>
+              {state.ticket.updatedTicket?.title}
+            </h4>
+            <h4>Tickets:</h4>
+            <div className="tickets">
+              {ticketInfo.map((ticket, index) => (
+                <p key={index}>{ticket}</p>
+              ))}
+            </div>
+
+            <h4>Validity:</h4>
+            <div className="validity">
+              <p> {state.ticket.updatedTicket.Validity}</p>
+            </div>
+
+            <h4>Condition of carriages:</h4>
+            <div className="carriages">
+              {carriages.map((carriage, index) => (
+                <li key={index}>{carriage}</li>
+              ))}
+            </div>
+            <h5>
+              N.B.: Berlin AB (Berlin city area) / Berlin ABC (Berlin plus
+              surrounding area incl. Potsdam and BER Airport)
+              <br />
+              Do you need to a bicycle ticket also?{" "}
+              <Link to="/questionnaires/bike">
+                Tariff information - Bicycle tickets
+              </Link>
+            </h5>
+          </>
+        )}
+      </div>
     </div>
   );
 };

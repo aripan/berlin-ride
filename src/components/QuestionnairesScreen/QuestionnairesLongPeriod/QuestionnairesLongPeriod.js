@@ -73,7 +73,7 @@ const QuestionnairesLongPeriod = () => {
   };
 
   return (
-    <div>
+    <div className="question-container">
       {showResult ? (
         <ResultScreenLongPeriod
           berlinpass={berlinpass}

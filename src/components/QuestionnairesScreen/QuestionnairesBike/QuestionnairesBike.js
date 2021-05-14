@@ -48,7 +48,7 @@ const QuestionnairesBike = () => {
   };
 
   return (
-    <div>
+    <div className="question-container">
       {showResult ? (
         <ResultScreenBike selectedOption={selectedOption} />
       ) : (

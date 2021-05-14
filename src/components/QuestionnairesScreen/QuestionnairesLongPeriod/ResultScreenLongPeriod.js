@@ -1,5 +1,6 @@
 import React, { useEffect, useReducer, useState } from "react";
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 import {
   longPeriodReducer,
   longPeriodState,
@@ -87,42 +88,82 @@ const ResultScreenLongPeriod = ({ berlinpass, ticket10, ticketVBB }) => {
   }, [state.ticket.updatedTicket]);
 
   return (
-    <div>
-      <h4>Details we got from you:</h4>
-      <ul>
-        <li>Do you prefer to buy monthly or annual tickets: Yes</li>
-        {berlinpass && <li>Do you have a berlinpass: {berlinpass}</li>}
-        {ticket10 && (
+    <div className="result-container">
+      <div className="details">
+        <h4>Details we got from you:</h4>
+        <ul style={{ listStyle: "none" }}>
           <li>
-            Do you want to save money by buying a 10 o’clock ticket: {ticket10}
+            Do you prefer to buy monthly or annual tickets:{" "}
+            <span className="details-answer">Yes</span>
           </li>
-        )}
-        {ticketVBB && (
-          <li>
-            Are you looking for some other option such as VBB eco-ticket:{" "}
-            {ticketVBB}
-          </li>
-        )}
-      </ul>
-      <button onClick={handleSuggestedResult}>Recommended ticket</button>
-      <h4 style={{ textDecoration: "underline" }}>
-        {state.ticket.updatedTicket?.title}
-      </h4>
-      {ticketInfo.map((ticket, index) => (
-        <p key={index}>{ticket}</p>
-      ))}
-      {state.ticket.updatedTicket && (
-        <>
-          <p>
-            Travel Validity: {state.ticket.updatedTicket["Travel validity"]}
-          </p>
-          <p>Transferability: {state.ticket.updatedTicket.Transferability}</p>
-        </>
-      )}
+          <br />
+          {berlinpass && (
+            <li>
+              Do you have a berlinpass:{" "}
+              <span className="details-answer">{berlinpass}</span>
+            </li>
+          )}
+          <br />
+          {ticket10 && (
+            <li>
+              Do you want to save money by buying a 10 o’clock ticket:{" "}
+              <span className="details-answer">{ticket10}</span>
+            </li>
+          )}
+          <br />
+          {ticketVBB && (
+            <li>
+              Are you looking for some other option such as VBB eco-ticket:{" "}
+              <span className="details-answer">{ticketVBB}</span>
+            </li>
+          )}
+          <br />
+        </ul>
+      </div>
 
-      {carriages.map((carriage, index) => (
-        <p key={index}>{carriage}</p>
-      ))}
+      <button onClick={handleSuggestedResult}>
+        Click here to see the suggestions
+      </button>
+      <div className="recommendation-container">
+        {state.ticket.updatedTicket && (
+          <>
+            <h4 style={{ textDecoration: "underline", textAlign: "center" }}>
+              {state.ticket.updatedTicket?.title}
+            </h4>
+            <h4>Tickets:</h4>
+            <div className="tickets">
+              {ticketInfo.map((ticket, index) => (
+                <p key={index}>{ticket}</p>
+              ))}
+            </div>
+
+            <h4>Travel Validity:</h4>
+            <div className="travel-validity">
+              <p> {state.ticket.updatedTicket["Travel validity"]}</p>
+            </div>
+            <h4>Transferability:</h4>
+            <div className="validity">
+              <p> {state.ticket.updatedTicket.Transferability}</p>
+            </div>
+
+            <h4>Condition of carriages:</h4>
+            <div className="carriages">
+              {carriages.map((carriage, index) => (
+                <li key={index}>{carriage}</li>
+              ))}
+            </div>
+            <h5>
+              N.B.: Berlin AB (Berlin city area) / Berlin ABC (Berlin plus
+              surrounding area incl. Potsdam and BER Airport)
+              <br />
+              Do you need to a bicycle ticket also?{" "}
+              <Link to="/questionnaires/bike">
+                Tariff information - Bicycle tickets
+              </Link>
+            </h5>
+          </>
+        )}
+      </div>
     </div>
   );
 };

@@ -76,7 +76,7 @@ const QuestionnairesDayTicket = () => {
     }
   };
   return (
-    <div>
+    <div className="question-container">
       {showResult ? (
         <ResultScreenDayTicket
           group={group}

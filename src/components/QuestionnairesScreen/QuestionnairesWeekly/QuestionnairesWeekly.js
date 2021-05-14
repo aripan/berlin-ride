@@ -24,7 +24,7 @@ const QuestionnairesWeekly = () => {
     }
   };
   return (
-    <div>
+    <div className="question-container">
       {showResult ? (
         <ResultScreenWeekly />
       ) : (

@@ -59,7 +59,7 @@ const QuestionnairesTourist = () => {
   };
 
   return (
-    <div>
+    <div className="question-container">
       {showResult ? (
         <ResultScreenTourist duration={duration} visitMuseum={visitMuseum} />
       ) : (

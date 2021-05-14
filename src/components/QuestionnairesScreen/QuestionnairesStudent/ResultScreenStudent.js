@@ -1,5 +1,6 @@
 import React, { useEffect, useReducer, useState } from "react";
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 import {
   studentReducer,
   studentState,
@@ -119,42 +120,93 @@ const ResultScreenStudent = ({
     }
   }, [state.ticket.updatedTicket]);
   return (
-    <div>
-      <h4>Details we got from you:</h4>
-      <ul>
-        <li>Are you a student or trainee: Yes</li>
-        {studentIdI && <li>Do you have a student ID I: {studentIdI}</li>}
-        {studentIdII && <li>Do you have a student ID II: {studentIdII}</li>}
-        {semesterTicket && (
-          <li>Are you eligible to buy a semester ticket: {semesterTicket}</li>
-        )}
-        {vbbTicket && (
+    <div className="result-container">
+      <div className="details">
+        <h4>Details we got from you:</h4>
+        <ul style={{ listStyle: "none" }}>
           <li>
-            Are you attending any professional training or vocational courses:{" "}
-            {vbbTicket}
+            Are you a student or trainee:{" "}
+            <span className="details-answer">Yes</span>
           </li>
-        )}
-      </ul>
-      <button onClick={handleSuggestedResult}>Recommended ticket</button>
-      <h4 style={{ textDecoration: "underline" }}>
-        {state.ticket.updatedTicket?.title}
-      </h4>
-      {ticketInfo.map((ticket, index) => (
-        <p key={index}>{ticket}</p>
-      ))}
-      {state.ticket.updatedTicket && (
-        <>
-          <p>Validity: {state.ticket.updatedTicket.Validity}</p>
-          <p>
-            Travel Validity: {state.ticket.updatedTicket["Travel validity"]}
-          </p>
-          <p>Requirements: {state.ticket.updatedTicket.Requirements}</p>
-        </>
-      )}
 
-      {carriages.map((carriage, index) => (
-        <p key={index}>{carriage}</p>
-      ))}
+          {studentIdI && (
+            <li>
+              Do you have a student ID I:{" "}
+              <span className="details-answer">{studentIdI}</span>
+            </li>
+          )}
+          <br />
+          {studentIdII && (
+            <li>
+              Do you have a student ID II:{" "}
+              <span className="details-answer">{studentIdII}</span>
+            </li>
+          )}
+          <br />
+          {semesterTicket && (
+            <li>
+              Are you eligible to buy a semester ticket:{" "}
+              <span className="details-answer">{semesterTicket}</span>
+            </li>
+          )}
+          <br />
+          {vbbTicket && (
+            <li>
+              Are you attending any professional training or vocational courses:{" "}
+              <span className="details-answer">{vbbTicket}</span>
+            </li>
+          )}
+          <br />
+        </ul>
+      </div>
+
+      <button onClick={handleSuggestedResult}>
+        Click here to see the suggestions
+      </button>
+      <div className="recommendation-container">
+        {state.ticket.updatedTicket && (
+          <>
+            <h4 style={{ textDecoration: "underline", textAlign: "center" }}>
+              {state.ticket.updatedTicket?.title}
+            </h4>
+            <h4>Tickets:</h4>
+            <div className="tickets">
+              {ticketInfo.map((ticket, index) => (
+                <p key={index}>{ticket}</p>
+              ))}
+            </div>
+
+            <h4>Validity:</h4>
+            <div className="validity">
+              <p> {state.ticket.updatedTicket.Validity}</p>
+            </div>
+            <h4>Travel validity:</h4>
+            <div className="travel-validity">
+              <p> {state.ticket.updatedTicket["Travel validity"]}</p>
+            </div>
+            <h4>Requirements:</h4>
+            <div className="requirements">
+              <p> {state.ticket.updatedTicket.Requirements}</p>
+            </div>
+
+            <h4>Condition of carriages:</h4>
+            <div className="carriages">
+              {carriages.map((carriage, index) => (
+                <li key={index}>{carriage}</li>
+              ))}
+            </div>
+            <h5>
+              N.B.: Berlin AB (Berlin city area) / Berlin ABC (Berlin plus
+              surrounding area incl. Potsdam and BER Airport)
+              <br />
+              Do you need to a bicycle ticket also?{" "}
+              <Link to="/questionnaires/bike">
+                Tariff information - Bicycle tickets
+              </Link>
+            </h5>
+          </>
+        )}
+      </div>
     </div>
   );
 };

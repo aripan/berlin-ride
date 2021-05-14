@@ -89,7 +89,7 @@ const QuestionnairesStudent = () => {
   };
 
   return (
-    <div>
+    <div className="question-container">
       {showResult ? (
         <ResultScreenStudent
           studentIdI={studentIdI}

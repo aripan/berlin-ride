@@ -51,7 +51,7 @@ const QuestionnairesNearBy = () => {
   };
 
   return (
-    <div>
+    <div className="question-container">
       {showResult ? (
         <ResultScreenNearBy selectedOption={selectedOption} />
       ) : (

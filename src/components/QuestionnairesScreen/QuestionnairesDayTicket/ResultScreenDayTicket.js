@@ -1,4 +1,5 @@
 import React, { useEffect, useReducer, useState } from "react";
+import { Link } from "react-router-dom";
 import {
   dayTicketReducer,
   dayTicketState,
@@ -92,42 +93,82 @@ const ResultScreenDayTicket = ({ group, numberOfPeople, studentGroup }) => {
   }, [state.ticket.updatedTicket]);
 
   return (
-    <div>
-      <h4>Details we got from you:</h4>
-      <ul>
-        <li>Are you looking for a day ticket: Yes</li>
-        <li>Are you travelling in a group: {group}</li>
-        {!(group === "Not in a group") && (
+    <div className="result-container">
+      <div className="details">
+        <h4>Details we got from you:</h4>
+        <ul style={{ listStyle: "none" }}>
+          <li>
+            Are you looking for a day ticket:{" "}
+            <span className="details-answer">Yes</span>
+          </li>
+          <br />
+          <li>
+            Are you travelling in a group:{" "}
+            <span className="details-answer">{group}</span>
+          </li>
+          <br />
+          {!(group === "Not in a group") && (
+            <>
+              <li>
+                How many people are there in the group:{" "}
+                <span className="details-answer">{numberOfPeople}</span>
+              </li>
+              <br />
+              {studentGroup && (
+                <li>
+                  Are you a school student(up to grade 8):{" "}
+                  <span className="details-answer">{studentGroup}</span>
+                </li>
+              )}
+              <br />
+            </>
+          )}
+        </ul>
+      </div>
+
+      <button onClick={handleSuggestedResult}>
+        Click here to see the suggestions
+      </button>
+      <div className="recommendation-container">
+        {state.ticket.updatedTicket && (
           <>
-            <li>How many people are there in the group: {numberOfPeople}</li>
-            {studentGroup && (
-              <li>Are you a school student(up to grade 8): {studentGroup}</li>
-            )}
+            <h4 style={{ textDecoration: "underline", textAlign: "center" }}>
+              {state.ticket.updatedTicket?.title}
+            </h4>
+            <h4>Tickets:</h4>
+            <div className="tickets">
+              {ticketInfo.map((ticket, index) => (
+                <p key={index}>{ticket}</p>
+              ))}
+            </div>
+
+            <h4>Validity:</h4>
+            <div className="validity">
+              <p> {state.ticket.updatedTicket.Validity}</p>
+            </div>
+            <h4>Travel validity:</h4>
+            <div className="travel-validity">
+              <p> {state.ticket.updatedTicket["Travel validity"]}</p>
+            </div>
+
+            <h4>Condition of carriages:</h4>
+            <div className="carriages">
+              {carriages.map((carriage, index) => (
+                <li key={index}>{carriage}</li>
+              ))}
+            </div>
+            <h5>
+              N.B.: Berlin AB (Berlin city area) / Berlin ABC (Berlin plus
+              surrounding area incl. Potsdam and BER Airport)
+              <br />
+              Do you need to a bicycle ticket also?{" "}
+              <Link to="/questionnaires/bike">
+                Tariff information - Bicycle tickets
+              </Link>
+            </h5>
           </>
         )}
-      </ul>
-
-      <button onClick={handleSuggestedResult}>Recommended ticket</button>
-      <h4 style={{ textDecoration: "underline" }}>
-        {state.ticket.updatedTicket?.title}
-      </h4>
-      {state.ticket.updatedTicket ? (
-        <>
-          {" "}
-          <h3>Ticket:</h3>
-          {ticketInfo.map((ticket, index) => (
-            <p key={index}>{ticket}</p>
-          ))}
-          <h3>Validity:</h3>
-          <p>{state.ticket.updatedTicket.Validity}</p>
-          <h3>Travel Validity:</h3>
-          <p>{state.ticket.updatedTicket["Travel validity"]}</p>
-          <h3>Conditions of carriages:</h3>
-          {carriages.map((carriage, index) => (
-            <p key={index}>{carriage}</p>
-          ))}
-        </>
-      ) : null}
+      </div>
     </div>
   );
 };

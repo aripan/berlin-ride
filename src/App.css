@@ -1,0 +1,85 @@
+.question-container {
+  background-color: #252d4a;
+  color: #ffffff;
+  width: max-content;
+  max-width: 70vw;
+  min-height: 20rem;
+  height: min-content;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin: 1rem;
+  box-shadow: 0.8rem 0.8rem 3rem 0 rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.question-section {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+}
+
+.answer-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+button {
+  width: 100%;
+  font-size: 1.2rem;
+  color: #ffffff;
+  background-color: #252d4a;
+  border-radius: 15px;
+  /* display: flex; */
+  padding: 0.5rem;
+  margin: auto;
+  /* justify-content: flex-start;
+  align-items: center; */
+  border: 0.5rem solid #234668;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #555e7d;
+}
+
+button:focus {
+  outline: none;
+}
+
+.result-container {
+  width: 100%;
+}
+
+.details {
+  text-transform: uppercase;
+}
+
+.details-answer {
+  font-style: italic;
+  font-weight: 800;
+}
+
+.recommendation-container {
+  background-color: #afb5ca;
+  color: #201f1f;
+  border-radius: 1rem;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.tickets,
+.validity,
+.travel-validity,
+.requirements,
+.carriages {
+  margin-left: 2rem;
+  font-size: 1rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 600;
+  font-style: italic;
+}

@@ -24,7 +24,7 @@ const QuestionnairesSenior = () => {
     }
   };
   return (
-    <div>
+    <div className="question-container">
       {showResult ? (
         <ResultScreenSenior />
       ) : (

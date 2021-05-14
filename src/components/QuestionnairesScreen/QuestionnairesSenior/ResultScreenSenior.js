@@ -1,4 +1,5 @@
 import React, { useEffect, useReducer, useState } from "react";
+import { Link } from "react-router-dom";
 import {
   seniorReducer,
   seniorState,
@@ -38,28 +39,59 @@ const ResultScreenSenior = () => {
     }
   }, [state.ticket.updatedTicket]);
   return (
-    <div>
-      <h4>Details we got from you:</h4>
-      <p>Are you 65years old or older than that: Yes</p>
-      <button onClick={handleSuggestedResult}>Recommended ticket</button>
-      <h4 style={{ textDecoration: "underline" }}>
-        {state.ticket.updatedTicket?.title}
-      </h4>
-      {ticketInfo.map((ticket, index) => (
-        <p key={index}>{ticket}</p>
-      ))}
-      {state.ticket.updatedTicket && (
-        <>
-          <p>Requirements: {state.ticket.updatedTicket.Requirements}</p>
-          <p>
-            Travel Validity: {state.ticket.updatedTicket["Travel validity"]}
-          </p>
-        </>
-      )}
+    <div className="result-container">
+      <div className="details">
+        <h4>Details we got from you:</h4>
+        <p>
+          Are you 65years old or older than that:{" "}
+          <span className="details-answer">Yes</span>
+        </p>
+      </div>
 
-      {carriages.map((carriage, index) => (
-        <p key={index}>{carriage}</p>
-      ))}
+      <button onClick={handleSuggestedResult}>
+        Click here to see the suggestions
+      </button>
+
+      <div className="recommendation-container">
+        {state.ticket.updatedTicket && (
+          <>
+            <h4 style={{ textDecoration: "underline", textAlign: "center" }}>
+              {state.ticket.updatedTicket?.title}
+            </h4>
+            <h4>Tickets:</h4>
+            <div className="tickets">
+              {ticketInfo.map((ticket, index) => (
+                <p key={index}>{ticket}</p>
+              ))}
+            </div>
+
+            <h4>Requirements:</h4>
+            <div className="requirements">
+              <p> {state.ticket.updatedTicket.Requirements}</p>
+            </div>
+            <h4>Travel validity:</h4>
+            <div className="travel-validity">
+              <p> {state.ticket.updatedTicket["Travel validity"]}</p>
+            </div>
+
+            <h4>Condition of carriages:</h4>
+            <div className="carriages">
+              {carriages.map((carriage, index) => (
+                <li key={index}>{carriage}</li>
+              ))}
+            </div>
+            <h5>
+              N.B.: Berlin AB (Berlin city area) / Berlin ABC (Berlin plus
+              surrounding area incl. Potsdam and BER Airport)
+              <br />
+              Do you need to a bicycle ticket also?{" "}
+              <Link to="/questionnaires/bike">
+                Tariff information - Bicycle tickets
+              </Link>
+            </h5>
+          </>
+        )}
+      </div>
     </div>
   );
 };
