@@ -8,6 +8,7 @@ import QuestionnairesBike from "./components/QuestionnairesScreen/Questionnaires
 import QuestionnairesNearBy from "./components/QuestionnairesScreen/QuestionnairesNearBy/QuestionnairesNearBy";
 import QuestionnairesSenior from "./components/QuestionnairesScreen/QuestionnairesSenior/QuestionnairesSenior";
 import QuestionnairesWeekly from "./components/QuestionnairesScreen/QuestionnairesWeekly/QuestionnairesWeekly";
+import QuestionnairesDayTicket from "./components/QuestionnairesScreen/QuestionnairesDayTicket/QuestionnairesDayTicket";
 
 // import OptionsScreen from "./components/OptionsScreen/OptionsScreen";
 
@@ -36,7 +37,9 @@ function App() {
         <Route exact path="/questionnaires/nearby">
           <QuestionnairesNearBy />
         </Route>
-        <Route exact path="/questionnaires/dayTicket"></Route>
+        <Route exact path="/questionnaires/dayTicket">
+          <QuestionnairesDayTicket />
+        </Route>
         <Route exact path="/questionnaires/senior">
           <QuestionnairesSenior />
         </Route>
